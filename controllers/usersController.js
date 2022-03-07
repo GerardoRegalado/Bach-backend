@@ -2,6 +2,9 @@ const bcryptjs = require("bcryptjs")
 const jwt	= require("jsonwebtoken")
 
 const User = require("./../models/User")
+const TdahModel = require("./../models/Tdah")
+const { response } = require("express")
+const async = require("hbs/lib/async")
 
 
 
@@ -9,10 +12,16 @@ exports.create = async (req, res) => {
 
 
 	const { 
-		name, 
-		lastname, 
-		email, 
-		password } = req.body
+		name,
+		lastname,
+		email,
+		password,
+		address,
+		phone,
+		age,
+		living} = req.body
+	
+		
 
 
 		try {
@@ -20,17 +29,27 @@ exports.create = async (req, res) => {
 			const salt = await bcryptjs.genSalt(10)
 			const hashedPassword = await bcryptjs.hash(password, salt)
 
-			console.log(hashedPassword)
+		
 
 			// 2. CREACIÓN DEL USUARIO
 			const newUser = await User.create({
 				name,
 				lastname,
 				email,
-				password: hashedPassword
+				password: hashedPassword,
+				address,
+				phone,
+				age,
+				living
 			})
 
-			console.log(newUser)
+			console.log('se creo un usuario')
+
+			const { _id } = newUser._id
+			console.log(_id)
+
+			
+		
 
 			// - GESTIÓN DE JWT - AUTENTICACIÓN
 			// CUANDO EL USUARIO SE REGISTRA, YA NO ES NECESARIO QUE INICIE SESIÓN EN ESE MOMENTO.
@@ -73,6 +92,21 @@ exports.create = async (req, res) => {
 
 
 }
+
+exports.getUserID = async (req,res) =>{
+	
+	const { id } = req.params
+	const population = await User.findById(id)
+    .populate("userID").populate({ path: "userID",populate: {
+        path: "userID",
+        model: "User",
+      },
+    });
+  console.log(population);
+};
+
+	
+
 
 
 exports.login = async (req, res) => {
@@ -167,3 +201,5 @@ exports.verifyToken = async (req, res) => {
 
  
 }
+
+

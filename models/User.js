@@ -6,19 +6,51 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+
 	lastname: {
 		type: String,
 		default: ""
 	},
+
 	email: {
-		type: String,
-		required: true,
-		unique: true
+		type: 		String,
+		required: 	true,
+		unique: 	true
 	},
+
 	password: {
-		type: String,
-		required: true
-	}
+		type: 		String,
+		required: 	true
+	},
+
+	address: {
+		type:		String,
+		required:	false
+	},
+
+	phone: {
+		type:		Number,
+		required:	false
+	},
+
+	age: {
+		type:		Number,
+		required:	false
+	},
+
+	living: {
+		type:		String,
+		required:	false
+	},
+	
+	tdahSurvey: [
+		{
+	
+		type: mongoose.Schema.Types.ObjectID,
+		ref: 'Tdah'
+		}
+	],
+
 
 })
 

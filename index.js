@@ -16,6 +16,7 @@ app.use(cors())
 app.use(express.json({extended: true}))
 
 // 3. RUTEO
+app.use("/api/surveys", require("./routes/surveys"))
 app.use("/api/users", require("./routes/users"))
 app.use("/", require("./routes/index"))
 
