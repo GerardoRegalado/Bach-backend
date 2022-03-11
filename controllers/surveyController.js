@@ -13,19 +13,21 @@ exports.TDAHsurvey = async (req,res) => {
     try {
         
     const { 
-        questionOne,
-        questionTwo,
-        questionThree,
-        questionFour,
-        questionFive,
-        questionSix,
-        questionSeven,
-        questionEight,
-        questionNine,
-        questionTen,
-        userID
-        
+    questionOne,
+    questionTwo,
+    questionThree,
+    questionFour,
+    questionFive,
+    questionSix,
+    questionSeven,
+    questionEight,
+    questionNine,
+    questionTen,
+    
+    userID
     } = req.body
+
+    console.log(req.body)
 
     
     
@@ -49,7 +51,7 @@ exports.TDAHsurvey = async (req,res) => {
 
     
 
-    console.log('se creo un nuevo survey');
+    console.log(newTDAHsurvey);
 
 
 } catch (error) {
@@ -59,6 +61,22 @@ exports.TDAHsurvey = async (req,res) => {
     })
 }
 
+}
+
+exports.TDAHgetSurvey = async(req,res) => {
+    const allSurveys = await TdahModel.find({})
+    res.json ({
+        msg: 'se obtuvieron las siguientes encuestas',
+        data:allSurveys
+    })
+}
+
+exports.getFeed = async(req,res) => {
+
+    const { id } = req.params
+    console.log(id)
+	const gettinUser = await TdahModel.findById({id})
+    console.log(gettinUser)
 }
 
 exports.DNsurvey = async(req,res) => {

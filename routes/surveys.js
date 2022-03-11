@@ -18,6 +18,8 @@ router.post("/stutter", surveyController.stutterSurvey)
 router.post("/tics", surveyController.ticSurvey)
 //rutas get
 
+router.get ("/tdah/:id", surveyController.getFeed)
+
 //router.get("/tdah", surveyController.TDAHdetails)
 
 module.exports = router

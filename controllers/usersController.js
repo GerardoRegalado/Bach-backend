@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
 			console.log('se creo un usuario')
 
 			const { _id } = newUser._id
-			console.log(_id)
+			(_id)
 
 			
 		
@@ -178,7 +178,7 @@ exports.login = async (req, res) => {
 
 exports.verifyToken = async (req, res) => {
 
-	console.log(req.user)
+	//console.log(req.user)
 
 	try {
 		

@@ -41,15 +41,16 @@ const userSchema = mongoose.Schema({
 	living: {
 		type:		String,
 		required:	false
-	},
+	}
+	// ,
 	
-	tdahSurvey: [
-		{
+	// tdahSurvey: [
+	// 	{
 	
-		type: mongoose.Schema.Types.ObjectID,
-		ref: 'Tdah'
-		}
-	],
+	// 	type: mongoose.Schema.Types.ObjectID,
+	// 	ref: 'Tdah'
+	// 	}
+	// ],
 
 
 })
